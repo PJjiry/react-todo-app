@@ -140,6 +140,10 @@ li button.toggle {
   margin-left: 0.5rem;
 }
 
+li button.toggle:hover {
+  background-color: var(--primary-hover);
+}
+
 .link {
   color: var(--text);
   border: none;

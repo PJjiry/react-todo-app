@@ -12,7 +12,7 @@ export const TodoForm = ({ addTodo }:TodoFormProps) => {
   }
 
   const handleSubmit = () => {
-    if(!todoName){
+    if(!todoName.trim()){
       return
     }
     addTodo(todoName)

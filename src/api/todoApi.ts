@@ -56,5 +56,9 @@ export const todoApi = {
       body: JSON.stringify(body)
     })
     return handleResponse<Todo>(response)
+  },
+  async fetchTodo(id:number){
+    const response = await fetch(`${API_URL}/${id}`)
+    return handleResponse<Todo>(response)
   }
 }

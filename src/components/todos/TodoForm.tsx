@@ -1,6 +1,10 @@
 import { type ChangeEvent, useState } from 'react'
 
-export const TodoForm = () => {
+type TodoFormProps = {
+  addTodo: (todoName:string) => void
+}
+
+export const TodoForm = ({ addTodo }:TodoFormProps) => {
   const [todoName, setTodoName] = useState<string>('')
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -8,13 +12,17 @@ export const TodoForm = () => {
   }
 
   const handleSubmit = () => {
-
+    if(!todoName){
+      return
+    }
+    addTodo(todoName)
+    setTodoName('')
   }
 
   return(
       <div className="input-group">
-        <input name="todo-text" id="new-todo-input" placeholder="What needs to be done?" value={todoName} onChange={handleInputChange} />
-        <button onClick={handleSubmit} type="submit" id="add-btn">
+        <input name="todo-text" placeholder="What needs to be done?" value={todoName} onChange={handleInputChange} />
+        <button onClick={handleSubmit}>
           Add
         </button>
       </div>

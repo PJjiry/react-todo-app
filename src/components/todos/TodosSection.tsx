@@ -8,26 +8,44 @@ import { todoApi } from '../../api/todoApi.ts'
 export const TodosSection = () => {
   const [todos, setTodos] = useState<Todo[]>([])
 
-  const fetchTodos = async ()=>{
+  const fetchTodos = async () => {
     try {
       const data = await todoApi.fetchTodos()
       setTodos(data)
-    } catch (error){
+    } catch (error) {
       console.error(error)
     }
   }
 
-  useEffect(()=>{
+  const addTodo = async (todoName: string) => {
+    try {
+      const newTodo = await todoApi.createTodo(todoName)
+      setTodos((prevTodos) => [...prevTodos, newTodo])
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const deleteTodo = async (todoId: number) => {
+    try {
+      await todoApi.deleteTodo(todoId)
+      setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== todoId))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  useEffect(() => {
     fetchTodos()
-  },[])
+  }, [])
 
   return (
     <main>
-      <TodoForm />
+      <TodoForm addTodo={addTodo} />
       <div className="todo-container">
         <ul id="todo-list">
-          {todos.map((todo)=>{
-            return <TodoItem key={todo.id} todo={todo}/>
+          {todos.map((todo) => {
+            return <TodoItem key={todo.id} deleteTodo={deleteTodo} todo={todo} />
           })}
         </ul>
       </div>

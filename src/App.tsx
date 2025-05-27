@@ -4,17 +4,15 @@ import { TodosProvider } from './providers/todos.provider.tsx'
 
 function App() {
   return (
-    <>
-      <TodosProvider>
+    <TodosProvider>
       <div className="container">
-        <Header title="My Todo list" subtitle="Add your tasks"/>
-        <TodosSection/>
+        <Header title="My Todo list" subtitle="Add your tasks" />
+        <TodosSection />
         <footer>
           <p>Click on a task to mark it as completed</p>
         </footer>
       </div>
-      </TodosProvider>
-    </>
+    </TodosProvider>
   )
 }
 

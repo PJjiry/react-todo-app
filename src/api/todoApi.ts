@@ -2,7 +2,7 @@ import type { Todo } from '../types.ts'
 
 const API_URL = "https://eli-workshop.vercel.app/api/users/jirp13/todos"
 
-class ApiError extends Error {
+export class ApiError extends Error {
   constructor(message: string) {
     super(message)
     this.name = 'Api Error'
